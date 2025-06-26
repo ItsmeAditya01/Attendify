@@ -12,8 +12,11 @@ import StudentOverview from "../components/overview/Studentoverview";
 import FacultyOverview from "../components/overview/Facultyoverview";
 import { UserManagement } from "@/components/UserManagement";
 import { LogOut, Menu, Settings } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Dashboard = () => {
+  const { signOut } = useAuth();
+
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const role = searchParams.get("role") || "student";
@@ -27,9 +30,15 @@ const Dashboard = () => {
     }
   }, [role, navigate]);
 
-  const handleLogout = () => {
-    navigate("/");
-  };
+  // const handleLogout = () => {
+  //   navigate("/");
+  // };
+  const handleLogout = async () => {
+  await signOut();
+  sessionStorage.removeItem("requestedRole");
+  navigate("/");
+};
+
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
