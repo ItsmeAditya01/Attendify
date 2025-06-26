@@ -21,9 +21,13 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const role = searchParams.get("role") || "student";
 
-  const [activeSection, setActiveSection] = useState("overview");
+  // const [activeSection, setActiveSection] = useState("overview");
+  const initialSection = role === "admin" ? "users" : "overview";
+const [activeSection, setActiveSection] = useState(initialSection);
+
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
+  
   useEffect(() => {
     if (!role) {
       navigate("/");
