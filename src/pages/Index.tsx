@@ -104,17 +104,6 @@ sessionStorage.setItem("requestedRole", selectedRole);
   }
 };
 
-  
-
-
-  if (showRegistration) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
-        <StudentRegistration onBack={() => setShowRegistration(false)} />
-      </div>
-    );
-  }
-
   useEffect(() => {
   const requestedRole = sessionStorage.getItem("requestedRole");
 
@@ -138,6 +127,17 @@ sessionStorage.setItem("requestedRole", selectedRole);
   navigate(`/dashboard?role=${requestedRole}`);
   localStorage.removeItem("requestedRole");
 }, [profile, profileLoading]);
+
+
+  if (showRegistration) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+        <StudentRegistration onBack={() => setShowRegistration(false)} />
+      </div>
+    );
+  }
+
+  
 
 
   return (
